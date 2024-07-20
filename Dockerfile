@@ -1,8 +1,8 @@
-# Use a Windows base image
-FROM mcr.microsoft.com/windows/servercore:ltsc2022
+# Use an official base image
+FROM alpine:latest
 
-# Copy the batch file into the Docker image
-COPY hello-world.bat C:/hello-world.bat
+# Add a Hello World script
+RUN echo -e '#!/bin/sh\n\necho "Hello World"' > /hello-world.bat
 
-# Run the batch file when the container starts
-ENTRYPOINT ["C:\\hello-world.bat"]
+# Set the script as the entrypoint
+ENTRYPOINT ["/hello-world.bat"]
